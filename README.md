@@ -18,7 +18,23 @@ Abra o terminal na raíz do projeto e execute os comandos a seguir:
 
 Abra o terminal no diretório frontend e execute os comandos:
 - npm install
-- ng serve
+- npm run build
+
+Agora, acesse o caminho frontend > dist > frontend > browser e crie o arquivo manifest.json, com uma estrutura como:
+
+{
+    "manifest_version": 3,
+    "name": "Inicie Extension",
+    "description": "Fullstack Development test",
+    "version": "1.0",
+    "action": {
+        "default_popup": "index.html"
+    }
+}
+
+Na sequência, acesse seu navegador chrome, acesse a aba de extensões, ative o modo de desenvolvedor, e carregue a extensão sem compactação.
+
+O arquivo a selecionar deve ser o mesmo citado acima (Pasta Browser, onde você criou o arquivo manifest)
   
 
 ## Funcionalidades
