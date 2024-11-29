@@ -1,0 +1,35 @@
+<div class="max-w-4xl mx-auto bg-gray-900 p-16 rounded-lg shadow-lg mt-10" style="width: 48rem; height: 240vh;">
+    <h3 class="text-xl font-bold mb-4 text-gray-200">Chat em Tempo Real</h3>
+    <div class="bg-gray-800 p-4 rounded-lg shadow-inner mb-4 h-96 overflow-y-auto">
+        <ul>
+            <li *ngFor="let message of messages"
+                [ngClass]="{'text-right': message.sender === user, 'text-left': message.sender !== user}">
+                <div [ngClass]="{'bg-blue-700 text-white': message.sender === user, 'bg-gray-700 text-gray-300': message.sender !== user}"
+                    class="px-3 py-1 rounded-lg shadow-sm inline-block mb-2">
+                    <strong>{{ message.sender }}: </strong>
+                    <span *ngIf="message.text">{{ message.text }}</span>
+                    <img *ngIf="message.imageUrl" [src]="message.imageUrl"
+                        class="max-w-full h-auto rounded-lg mt-2 w-full" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="flex items-center mb-4">
+        <input [(ngModel)]="newMessage" placeholder="Digite uma mensagem"
+            class="flex-1 bg-gray-800 text-white px-4 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 mr-2">
+    </div>
+    <div class="flex items-center mt-4 text-xs">
+        <button (click)="sendMessage()"
+            class="bg-blue-500 text-white w-64 mr-4 px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+            Enviar Mensagem
+        </button>
+        <button (click)="sendImage()"
+            class="bg-blue-500 text-white w-48 px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+            Capturar Tela
+        </button>
+    </div>
+    <button type="button" (click)="cancel()"
+        class="bg-gray-700 text-white px-4 py-2 rounded w-64 mt-4 items-center hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+        Voltar ao Menu
+    </button>
+</div>

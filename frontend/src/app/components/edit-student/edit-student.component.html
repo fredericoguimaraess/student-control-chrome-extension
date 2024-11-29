@@ -1,0 +1,33 @@
+<div class="container bg-gray-900 p-16 mx-auto" style="width: 24rem;">
+    <h2 class="text-2xl font-bold mb-4 text-center text-gray-200 mt-24">Editar Aluno</h2>
+    <form [formGroup]="editForm" (ngSubmit)="updateUser()">
+        <div *ngIf="errorMessage" class="mb-4 text-red-500">{{ errorMessage }}</div>
+        <div class="mb-4">
+            <label class="block text-gray-200 mb-2">Nome:</label>
+            <input formControlName="name"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-800 text-gray-200" />
+            <div *ngIf="editForm.get('name')?.invalid && editForm.get('name')?.touched" class="text-red-500">
+                Nome é obrigatório.
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-200 mb-2">Email:</label>
+            <input formControlName="email"
+                class="w-full p-2 border border-gray-700 rounded-md bg-gray-800 text-gray-200" />
+            <div *ngIf="editForm.get('email')?.invalid && editForm.get('email')?.touched" class="text-red-500">
+                <div *ngIf="editForm.get('email')?.errors?.['required']">Email é obrigatório.</div>
+                <div *ngIf="editForm.get('email')?.errors?.['email']">Email inválido.</div>
+            </div>
+        </div>
+        <div class="flex justify-end">
+            <button type="button" (click)="cancel()"
+                class="bg-gray-700 text-white px-4 py-2 rounded mr-2 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                Cancelar
+            </button>
+            <button type="submit"
+                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+                Salvar
+            </button>
+        </div>
+    </form>
+</div>
